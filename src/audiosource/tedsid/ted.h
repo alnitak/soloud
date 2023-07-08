@@ -1,3 +1,5 @@
+#ifndef _TED_H
+#define _TED_H
 
 class TED 
 {
@@ -42,3 +44,5 @@ public:
     void setFilterOrder(unsigned int value);
     void initFilter(unsigned int sampleRate_, unsigned int filterOrder_);
 };
+
+#endif

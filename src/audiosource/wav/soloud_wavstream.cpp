@@ -363,6 +363,12 @@ namespace SoLoud
 				mStreamPosition = float(pos / mBaseSamplerate);
 				return 0;
 			case WAVSTREAM_MP3:
+				// When using TYPE_WAVSTREAM for mp3 and seeking backward,
+				// dr_mp3.h uses `drmp3_seek_to_pcm_frame__brute_force()` function which
+				// move to the start of the stream and then move forward to [time]. This
+				// implies some lag and queue subsequent seeks request if the previous seek is not yet
+				// complete (especially when using a slider) impacting the main UI thread.
+				// To have no lags, please use TYPE_WAV instead if possible!
 				drmp3_seek_to_pcm_frame(mCodec.mMp3, pos);
 				mOffset = pos;
 				mStreamPosition = float(pos / mBaseSamplerate);
@@ -376,7 +382,8 @@ namespace SoLoud
 				break;
 			}
 		}
-		else {
+		else
+		{
 			return AudioSourceInstance::seek(aSeconds, mScratch, mScratchSize);
 		}
 

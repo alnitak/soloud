@@ -29,6 +29,7 @@ freely, subject to the following restrictions:
 
 namespace SoLoud
 {
+	
 	EqFilterInstance::EqFilterInstance(EqFilter *aParent)
 	{
 		mParent = aParent;
@@ -43,7 +44,8 @@ namespace SoLoud
 		mParam[BAND8] = aParent->mVolume[BAND8 - BAND1];
 	}
 
-	static float catmullrom(float t, float p0, float p1, float p2, float p3)
+	/// Already defined in soloud.cpp:945
+	float EqFilterInstance::catmullrom(float t, float p0, float p1, float p2, float p3)
 	{
 		return 0.5f * (
 			(2 * p1) +

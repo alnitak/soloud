@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "soloud.h"
 #include "dr_flac.h"
 #include "dr_mp3.h"
@@ -339,7 +340,7 @@ namespace SoLoud
 		return aSamplesToRead;
 	}
 
-	result WavStreamInstance::seek(double aSeconds, float* mScratch, unsigned int mScratchSize)
+	result WavStreamInstance::seek(double aSeconds, float *mScratch, unsigned int mScratchSize)
 	{
 		if (mCodec.mOgg)
 		{
